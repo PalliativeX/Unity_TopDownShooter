@@ -1,2 +1,1 @@
-# Unity_TopDownShooter
-A shooter made with Unity and C# following the guides of  Sebastian Lague
+A reference to the series: https://www.youtube.com/playlist?list=PLFt_AvWsXl0ctd4dgE1F8g3uec4zKNRV0
