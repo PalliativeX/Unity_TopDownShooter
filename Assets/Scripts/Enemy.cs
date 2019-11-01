@@ -3,13 +3,14 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent (typeof(NavMeshAgent))]
-public class Enemy : MonoBehaviour
+public class Enemy : LivingEntity
 {
     NavMeshAgent pathfinder;
     Transform target;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         pathfinder = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -27,7 +28,8 @@ public class Enemy : MonoBehaviour
         while (target != null)
         {
             Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
-            pathfinder.SetDestination(target.position);
+            if (!dead)
+                pathfinder.SetDestination(target.position);
             yield return new WaitForSeconds(refreshRate);
         }
     }
