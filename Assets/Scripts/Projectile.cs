@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -17,8 +15,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        if (gameObject != null)
-            Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);
 
         Collider[] initialCollisions = Physics.OverlapSphere(transform.position, 0.1f, collisionMask);
         if (initialCollisions.Length > 0)
