@@ -201,8 +201,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 7090517180581331588}
-  projectile: {fileID: 6502063019346907412}
-  msBetweenShots: 100
+  projectile: {fileID: 3560994760780529413, guid: c436e16dd6188ac43befcc3beedb74cb,
+    type: 3}
+  msBetweenShoots: 100
   muzzleVelocity: 35
 --- !u!1 &5076504969916841892
 GameObject:
@@ -371,15 +372,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7732898280345562641}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6502063019346907412 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3560994760780529413, guid: c436e16dd6188ac43befcc3beedb74cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 7732898280345562641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549ec7c986cd04148b1646775147db80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
