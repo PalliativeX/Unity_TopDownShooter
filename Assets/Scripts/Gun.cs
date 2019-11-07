@@ -1,23 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Gun : MonoBehaviour
 {
+
     public Transform muzzle;
     public Projectile projectile;
-    public float msBetweenShoots = 100;
+    public float msBetweenShots = 100;
     public float muzzleVelocity = 35;
 
+    public Transform shell;
+    public Transform shellEjection;
+    MuzzleFlash muzzleflash;
     float nextShotTime;
+
+    void Start()
+    {
+        muzzleflash = GetComponent<MuzzleFlash>();
+    }
 
     public void Shoot()
     {
+
         if (Time.time > nextShotTime)
         {
-            nextShotTime = Time.time + msBetweenShoots / 1000.0f;
-            Projectile projectile = Instantiate(this.projectile, muzzle.position, muzzle.rotation) as Projectile;
-            projectile.setSpeed(muzzleVelocity);
+            nextShotTime = Time.time + msBetweenShots / 1000;
+            Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Projectile;
+            //Projectile newProjectile = Instantiate(projectile, new Vector3(0, 0, 0) , muzzle.rotation) as Projectile;
+
+            newProjectile.SetSpeed(muzzleVelocity);
+
+            Instantiate(shell, shellEjection.position, shellEjection.rotation);
+            muzzleflash.Activate();
         }
     }
 }
