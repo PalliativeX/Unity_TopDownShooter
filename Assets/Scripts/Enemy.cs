@@ -19,7 +19,7 @@ public class Enemy : LivingEntity
 
     float attackDistanceThreshold = .5f;
     float timeBetweenAttacks = 1;
-    float damage = 1;
+    float damage;
 
     float nextAttackTime;
     float myCollisionRadius;
