@@ -15,10 +15,21 @@ public class Player : LivingEntity
     protected override void Start()
     {
         base.Start();
-        controller = GetComponent<PlayerController>();
-        gunController = GetComponent<GunController>();
-        viewCamera = Camera.main;
     }
+
+	private void Awake()
+	{
+		controller = GetComponent<PlayerController>();
+		gunController = GetComponent<GunController>();
+		viewCamera = Camera.main;
+		FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
+	}
+
+	void OnNewWave(int waveNumber)
+	{
+		health = startingHealth;
+		gunController.EquipGun(waveNumber - 1);
+	}
 
     void Update()
     {
@@ -38,7 +49,11 @@ public class Player : LivingEntity
             controller.LookAt(point);
             crosshairs.transform.position = point;
 			crosshairs.DetectTargets(ray);
-        }
+			if ((new Vector2(point.x, point.z) - new Vector2(transform.position.x, transform.position.z)).sqrMagnitude > 1.7f)
+			{
+				gunController.Aim(point);
+			}
+		}
 
 
         //weapon input
@@ -46,6 +61,8 @@ public class Player : LivingEntity
             gunController.OnTriggerHold();
         if (Input.GetMouseButtonUp(0))
             gunController.OnTriggerRelease();
+		if (Input.GetKeyDown(KeyCode.R))
+			gunController.Reload();
     }
 
 }

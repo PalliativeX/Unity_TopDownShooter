@@ -5,15 +5,12 @@ public class GunController : MonoBehaviour
 {
 
     public Transform weaponHold;
-    public Gun startingGun;
+    public Gun[] guns;
     Gun equippedGun;
 
     void Start()
     {
-        if (startingGun != null)
-        {
-            EquipGun(startingGun);
-        }
+        
     }
 
     public void EquipGun(Gun gunToEquip)
@@ -26,7 +23,14 @@ public class GunController : MonoBehaviour
         equippedGun.transform.parent = weaponHold;
     }
 
-    public void OnTriggerHold()
+	public void EquipGun(int weaponIndex)
+	{
+		// temp check, weapon count is now less than wave number
+		if (weaponIndex < guns.Length)
+			EquipGun(guns[weaponIndex]);
+	}
+
+	public void OnTriggerHold()
     {
         if (equippedGun != null)
         {
@@ -47,4 +51,20 @@ public class GunController : MonoBehaviour
             return weaponHold.position.y;
         }
     }
+
+	public void Aim(Vector3 aimPoint)
+	{
+		if (equippedGun != null)
+		{
+			equippedGun.Aim(aimPoint);
+		}
+	}
+
+	public void Reload()
+	{
+		if (equippedGun != null)
+			equippedGun.Reload();
+	}
+
+
 }
