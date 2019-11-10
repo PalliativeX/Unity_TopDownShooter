@@ -63,6 +63,12 @@ public class Player : LivingEntity
             gunController.OnTriggerRelease();
 		if (Input.GetKeyDown(KeyCode.R))
 			gunController.Reload();
+
+		if (transform.position.y < -10)
+		{
+			TakeDamage(startingHealth);
+		}
+
     }
 
 	public override void Die()
